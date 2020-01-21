@@ -1,60 +1,105 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <!-- App Bar -->
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
+          :src="require('../public/logo-white.svg')"
+          class="my-3 mr-3"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
           width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
+          height="40"
         />
       </div>
+      <v-spacer/>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+      <v-btn icon @click="openAddActor">
+        <v-icon>mdi-plus</v-icon>
       </v-btn>
+
+      <v-app-bar-nav-icon @click.stop="drawer=!drawer"/>
     </v-app-bar>
 
-    <v-content>
-      <HelloWorld/>
+    <!-- Main Container -->
+    <v-content id="main" style="width:100%;max-width:960px" class="mx-auto">
+      <Tracker v-bind:tracker="tracker"/>
+      <AddActor @add-actor="addActor"/>
     </v-content>
+
+    <!-- Side Menu -->
+    <v-navigation-drawer app right v-model="drawer">
+      <v-list rounded>
+        <v-subheader>Actors</v-subheader>
+
+        <v-list-item link v-for="actor in actors" :key="actor.id" @click="moveToTracker(actor)">
+          <v-list-item-content>
+            <v-list-item-title v-text="actor.name"/>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
   </v-app>
 </template>
 
+<style>
+  #main {
+    background-image: url('/logo.svg');
+    background-size: 50%;
+    background-position: center center;
+  }
+</style>
+
 <script>
-import HelloWorld from './components/HelloWorld';
+  import {eventBus} from './main.js'
+  import Tracker from './components/Tracker.vue'
+  import AddActor from "./components/AddActor"
 
-export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-};
+  export default {
+    name: 'App',
+    components: {
+      Tracker,
+      AddActor
+    },
+    data: () => ({
+      drawer: false,
+      tracker: [],
+      actors: [
+        {
+            id: 1,
+            name: 'Wren',
+            bonus: 5,
+            class: 'character',
+        },
+        {
+            id: 2,
+            name: 'Janus',
+            bonus: 3,
+            class: 'character',
+        },
+        {
+            id: 3,
+            name: 'Goblin',
+            bonus: 2,
+            class: 'monster'
+        },
+        {
+            id: 4,
+            name: 'Worg',
+            bonus: 3,
+            class: 'monster'
+        }
+      ]
+    }),
+    methods: {
+      openAddActor() {
+        eventBus.$emit('dialog', true);
+      },
+      addActor(newActor) {
+        this.actors = [...this.actors, newActor];
+      },
+      moveToTracker(actor) {
+        this.tracker = [...this.tracker, actor]
+      }
+    }
+  };
 </script>
