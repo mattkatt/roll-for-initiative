@@ -31,7 +31,7 @@
       <v-list rounded>
         <v-subheader>Actors</v-subheader>
 
-        <v-list-item link v-for="actor in actors" :key="actor.id" @click="moveToTracker(actor)">
+        <v-list-item link v-for="(actor, i) in actors" :key="actor.id" @click="moveToTracker(actor, i)">
           <v-list-item-content>
             <v-list-item-title v-text="actor.name"/>
           </v-list-item-content>
@@ -97,8 +97,9 @@
       addActor(newActor) {
         this.actors = [...this.actors, newActor];
       },
-      moveToTracker(actor) {
-        this.tracker = [...this.tracker, actor]
+      moveToTracker(actor, index) {
+        this.tracker = [...this.tracker, actor];
+        this.actors.splice(index, 1);
       }
     }
   };
