@@ -76,28 +76,16 @@
       tracker: [],
       actors: [
         {
-            id: 1,
-            name: 'Wren',
-            bonus: 5,
-            class: 'character',
+          id: 1,
+          name: 'Example Character',
+          bonus: 5,
+          class: 'character',
         },
         {
-            id: 2,
-            name: 'Janus',
-            bonus: 3,
-            class: 'character',
-        },
-        {
-            id: 3,
-            name: 'Goblin',
-            bonus: 2,
-            class: 'monster'
-        },
-        {
-            id: 4,
-            name: 'Worg',
-            bonus: 3,
-            class: 'monster'
+          id: 2,
+          name: 'Example Monster',
+          bonus: 5,
+          class: 'monster',
         }
       ]
     }),
