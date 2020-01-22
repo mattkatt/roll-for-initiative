@@ -26,6 +26,12 @@
       <AddActor @add-actor="addActor"/>
     </v-content>
 
+    <v-fab-transition>
+      <v-btn v-show="tracker.length" @click="resetTracker" fab fixed bottom left dark color="primary">
+        <v-icon>mdi-refresh</v-icon>
+      </v-btn>
+    </v-fab-transition>
+
     <!-- Side Menu -->
     <v-navigation-drawer app right v-model="drawer">
       <v-list rounded>
@@ -46,6 +52,7 @@
     background-image: url('/logo.svg');
     background-size: 50%;
     background-position: center center;
+    background-attachment: fixed;
   }
 </style>
 
@@ -100,6 +107,13 @@
       moveToTracker(actor, index) {
         this.tracker = [...this.tracker, actor];
         this.actors.splice(index, 1);
+      },
+      resetTracker() {
+        let vm = this;
+        this.tracker.forEach(actor => {
+            vm.actors = [...vm.actors, actor];
+        });
+        this.tracker = [];
       }
     }
   };
