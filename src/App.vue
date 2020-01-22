@@ -41,6 +41,11 @@
           <v-list-item-content>
             <v-list-item-title v-text="actor.name"/>
           </v-list-item-content>
+          <v-list-item-action>
+            <v-btn icon @click="destroyActor(i)">
+              <v-icon color="secondary">mdi-close</v-icon>
+            </v-btn>
+          </v-list-item-action>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -95,6 +100,9 @@
       },
       addActor(newActor) {
         this.actors = [...this.actors, newActor];
+      },
+      destroyActor(index) {
+          this.actors.splice(index, 1);
       },
       moveToTracker(actor, index) {
         this.tracker = [...this.tracker, actor];
