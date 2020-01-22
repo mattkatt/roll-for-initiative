@@ -67,6 +67,10 @@
       Tracker,
       AddActor
     },
+    created() {
+      this.loadState();
+      window.addEventListener('beforeunload', this.saveState)
+    },
     data: () => ({
       drawer: false,
       tracker: [],
@@ -114,6 +118,22 @@
             vm.actors = [...vm.actors, actor];
         });
         this.tracker = [];
+      },
+      saveState() {
+        window.console.log('save state');
+        let ls = localStorage;
+        ls.setItem('tracker', JSON.stringify(this.tracker));
+        ls.setItem('actors', JSON.stringify(this.actors));
+      },
+      loadState() {
+        window.console.log('load state');
+        let ls = localStorage;
+        if (ls.getItem('tracker')) {
+            this.tracker = JSON.parse(ls.getItem('tracker'));
+        }
+        if (ls.getItem('actors')) {
+            this.actors = JSON.parse(ls.getItem('actors'));
+        }
       }
     }
   };
