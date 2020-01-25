@@ -72,10 +72,10 @@
       Tracker,
       AddActor
     },
-    created() {
+    mounted() {
       this.loadState();
       window.addEventListener('beforeunload', this.saveState);
-      setInterval(this.saveState, 600000);
+      window.setInterval(this.saveState, 60000);
     },
     data: () => ({
       logo: require('../public/logo-white.svg'),
@@ -144,7 +144,6 @@
         this.initiativeActive = false;
       },
       saveState() {
-        window.console.log('Saving State');
         let ls = localStorage;
 
         ls.setItem('tracker', JSON.stringify(this.tracker));
