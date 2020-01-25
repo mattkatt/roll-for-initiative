@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <v-flex flex-column>
+    <v-flex flex-column class="tracker">
       <Actor
         v-for="actor in tracker"
-        v-bind:key="actor.id"
-        v-bind:actor="actor"
+        :key="actor.id"
+        :actor="actor"
         class="ma-2"
       />
     </v-flex>
@@ -26,5 +26,13 @@
 </script>
 
 <style>
+  .tracker {
+    padding-bottom: 64px;
+  }
 
+  @media (min-width: 1264px) {
+    .tracker {
+      padding-bottom: 0;
+    }
+  }
 </style>

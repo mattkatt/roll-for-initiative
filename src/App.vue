@@ -43,6 +43,7 @@
     <v-fab-transition>
       <v-btn
         fab fixed bottom right dark color="primary"
+        :class="{ 'btn--right' : $vuetify.breakpoint.lgAndUp }"
         v-show="tracker.length"
         @click="rollForInitiative"
       >
@@ -79,7 +80,6 @@
     },
     data: () => ({
       logo: require('../public/logo-white.svg'),
-      drawer: false,
       tracker: [],
       actors: [],
       initiativeActive: false
@@ -148,6 +148,7 @@
 
         ls.setItem('tracker', JSON.stringify(this.tracker));
         ls.setItem('actors', JSON.stringify(this.actors));
+        ls.setItem('initiativeActive', JSON.stringify(this.initiativeActive));
       },
       loadState() {
         let ls = localStorage;
@@ -157,6 +158,9 @@
         }
         if (ls.getItem('actors')) {
           this.actors = JSON.parse(ls.getItem('actors'));
+        }
+        if (ls.getItem('initiativeActive')) {
+          this.initiativeActive = JSON.parse(ls.getItem('initiativeActive'));
         }
       }
     }
@@ -169,5 +173,9 @@
     background-size: 50%;
     background-position: center center;
     background-attachment: fixed;
+  }
+
+  .btn--right {
+    right: 270px !important;
   }
 </style>

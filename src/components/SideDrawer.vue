@@ -43,6 +43,11 @@
         vm.drawer = value;
       });
     },
+    mounted() {
+      if(this.$vuetify.breakpoint.lgAndUp) {
+        this.drawer = true;
+      }
+    },
     methods: {
       destroyActor(id) {
         this.$emit('destroy-actor', id);
