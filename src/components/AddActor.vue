@@ -34,7 +34,7 @@
     name: 'AddActor',
     created() {
       let vm = this;
-      eventBus.$on('dialog', function (value) {
+      eventBus.$on('open-add-actor', value => {
           vm.showOverlay = value
       });
     },
@@ -56,6 +56,7 @@
           bonus: this.bonus,
           class: this.character ? 'character' : 'monster'
         });
+
         this.showOverlay = false;
       }
     }

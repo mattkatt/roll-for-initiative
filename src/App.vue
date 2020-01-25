@@ -11,13 +11,14 @@
           height="40"
         />
       </div>
+
       <v-spacer/>
 
       <v-btn icon @click="openAddActor">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
 
-      <v-app-bar-nav-icon @click.stop="drawer=!drawer"/>
+      <v-app-bar-nav-icon @click="openDrawer"/>
     </v-app-bar>
 
     <!-- Main Container -->
@@ -27,103 +28,96 @@
     </v-content>
 
     <v-fab-transition>
-      <v-btn v-show="tracker.length" @click="resetTracker" fab fixed bottom left dark color="primary">
+      <v-btn
+        fab fixed bottom left dark color="primary"
+        v-show="tracker.length"
+        @click="resetTracker"
+      >
         <v-icon>mdi-refresh</v-icon>
       </v-btn>
     </v-fab-transition>
 
-    <!-- Side Menu -->
-    <v-navigation-drawer app right v-model="drawer">
-      <v-list rounded>
-        <v-subheader>Actors</v-subheader>
+    <v-fab-transition>
+      <v-btn
+        fab fixed bottom right dark color="primary"
+        v-show="tracker.length"
+        @click="rollForInitiative"
+      >
+        <v-icon>mdi-dice-d20</v-icon>
+      </v-btn>
+    </v-fab-transition>
 
-        <v-list-item link v-for="(actor, i) in actors" :key="actor.id" @click="moveToTracker(actor, i)">
-          <v-list-item-content>
-            <v-list-item-title v-text="actor.name"/>
-          </v-list-item-content>
-          <v-list-item-action>
-            <v-btn icon @click="destroyActor(i)">
-              <v-icon color="secondary">mdi-close</v-icon>
-            </v-btn>
-          </v-list-item-action>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+    <!-- Side Menu -->
+    <SideDrawer
+      :actors="actors"
+      @destroy-actor="destroyActor"
+      @move-to-tracker="moveToTracker"
+    />
   </v-app>
 </template>
 
-<style>
-  #main {
-    background-image: url('/logo.svg');
-    background-size: 50%;
-    background-position: center center;
-    background-attachment: fixed;
-  }
-</style>
-
 <script>
-  import {eventBus} from './main.js'
-  import Tracker from './components/Tracker.vue'
-  import AddActor from "./components/AddActor"
+  import {eventBus} from './main'
+  import SideDrawer from './components/SideDrawer';
+  import Tracker from './components/Tracker'
+  import AddActor from './components/AddActor'
 
   export default {
     name: 'App',
     components: {
+      SideDrawer,
       Tracker,
       AddActor
     },
     created() {
       this.loadState();
-      window.addEventListener('beforeunload', this.saveState)
+      window.addEventListener('beforeunload', this.saveState);
     },
     data: () => ({
       drawer: false,
       tracker: [],
-      actors: [
-        {
-          id: 1,
-          name: 'Example Character',
-          bonus: 5,
-          class: 'character',
-        },
-        {
-          id: 2,
-          name: 'Example Monster',
-          bonus: 5,
-          class: 'monster',
-        }
-      ]
+      actors: []
     }),
     methods: {
       openAddActor() {
-        eventBus.$emit('dialog', true);
+        eventBus.$emit('open-add-actor', true);
+      },
+      openDrawer() {
+        eventBus.$emit('open-drawer', true);
       },
       addActor(newActor) {
         this.actors = [...this.actors, newActor];
       },
-      destroyActor(index) {
-          this.actors.splice(index, 1);
+      destroyActor(id) {
+        this.actors = this.actors.filter(function( obj ) {
+          return obj.id !== id;
+        });
       },
-      moveToTracker(actor, index) {
-        this.tracker = [...this.tracker, actor];
-        this.actors.splice(index, 1);
+      moveToTracker(actor) {
+        this.tracker = [... this.tracker, actor];
+        this.destroyActor(actor.id);
+      },
+      rollForInitiative() {
+        //@todo - begin initiative
       },
       resetTracker() {
         let vm = this;
+
         this.tracker.forEach(actor => {
             vm.actors = [...vm.actors, actor];
         });
+
         this.tracker = [];
       },
       saveState() {
-        window.console.log('save state');
         let ls = localStorage;
+
         ls.setItem('tracker', JSON.stringify(this.tracker));
         ls.setItem('actors', JSON.stringify(this.actors));
       },
       loadState() {
-        window.console.log('load state');
         let ls = localStorage;
+
         if (ls.getItem('tracker')) {
             this.tracker = JSON.parse(ls.getItem('tracker'));
         }
@@ -134,3 +128,12 @@
     }
   };
 </script>
+
+<style>
+  #main {
+    background-image: url('/logo.svg');
+    background-size: 50%;
+    background-position: center center;
+    background-attachment: fixed;
+  }
+</style>
