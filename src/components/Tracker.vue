@@ -12,7 +12,6 @@
 </template>
 
 <script>
-  import {eventBus} from '../main';
   import Actor from './Actor'
 
   export default {
@@ -22,29 +21,6 @@
     },
     props: {
       tracker: Array,
-    },
-    created() {
-      let vm = this;
-      eventBus.$on('initiative-rolled', () => {
-        vm.sort()
-      });
-    },
-    methods: {
-      sort() {
-        this.tracker.sort(this.compareInitiative);
-      },
-      compareInitiative(actorA, actorB) {
-        let a = actorA.currentInitiative,
-          b = actorB.currentInitiative;
-
-        if (a < b) {
-          return 1;
-        }
-        if (a > b) {
-          return -1;
-        }
-        return 0;
-      }
     }
   }
 </script>

@@ -104,19 +104,33 @@
         this.destroyActor(actor.id);
 
         if (this.initiativeActive) {
-          this.rollInitiativeForActor(actor)
+          this.rollInitiativeForActor(actor);
+          this.sortTracker();
         }
       },
       rollForInitiative() {
         this.initiativeActive = true;
         this.tracker.forEach(this.rollInitiativeForActor);
+        this.sortTracker();
       },
       rollInitiativeForActor(actor) {
         let roll =  Math.floor(Math.random() * 19) + 1;
         actor.currentInitiative = parseInt(actor.bonus) + roll;
-        // for debug purposes @todo - remove
-        window.console.log(actor.name + ': ' + roll);
-        eventBus.$emit('initiative-rolled');
+      },
+      sortTracker() {
+        this.tracker.sort(this.compareInitiative);
+      },
+      compareInitiative(actorA, actorB) {
+        let a = actorA.currentInitiative,
+            b = actorB.currentInitiative;
+
+        if (a < b) {
+          return 1;
+        }
+        if (a > b) {
+          return -1;
+        }
+        return 0;
       },
       resetTracker() {
         let vm = this;
@@ -130,6 +144,7 @@
         this.initiativeActive = false;
       },
       saveState() {
+        window.console.log('Saving State');
         let ls = localStorage;
 
         ls.setItem('tracker', JSON.stringify(this.tracker));
@@ -139,10 +154,10 @@
         let ls = localStorage;
 
         if (ls.getItem('tracker')) {
-            this.tracker = JSON.parse(ls.getItem('tracker'));
+          this.tracker = JSON.parse(ls.getItem('tracker'));
         }
         if (ls.getItem('actors')) {
-            this.actors = JSON.parse(ls.getItem('actors'));
+          this.actors = JSON.parse(ls.getItem('actors'));
         }
       }
     }
