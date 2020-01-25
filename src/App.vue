@@ -75,6 +75,7 @@
     created() {
       this.loadState();
       window.addEventListener('beforeunload', this.saveState);
+      setInterval(this.saveState, 600000);
     },
     data: () => ({
       logo: require('../public/logo-white.svg'),
