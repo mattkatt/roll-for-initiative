@@ -3,7 +3,10 @@
     <v-card>
       <v-card-title>Add Actor</v-card-title>
       <v-card-text>
-        <v-form v-model="valid" @submit.prevent="addActor">
+        <v-form
+          v-model="valid"
+          ref="form"
+        >
           <v-text-field
             v-model="name"
             :rules="nameRules"
@@ -19,7 +22,7 @@
             v-model="character"
             label="Character"
           />
-          <v-btn rounded color="primary" type="submit">Add</v-btn>
+          <v-btn rounded color="primary" @click="validate">Add</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
@@ -49,6 +52,11 @@
       valid: false
     }),
     methods: {
+      validate() {
+        if (this.$refs.form.validate()) {
+          this.addActor();
+        }
+      },
       addActor() {
         this.$emit('add-actor', {
           id: uuid.v4(),
