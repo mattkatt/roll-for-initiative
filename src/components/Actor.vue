@@ -1,5 +1,5 @@
 <template>
-  <v-card :class="actor.class">
+  <v-card class="actor" :class="actor.class">
     <v-card-title>{{ actor.name }}</v-card-title>
     <v-card-subtitle>Initiative: +{{ actor.bonus }}</v-card-subtitle>
   </v-card>
@@ -15,10 +15,13 @@
 </script>
 
 <style scoped>
+  .actor {
+    border-left: 5px solid #fff;
+  }
   .character {
-    background-color: rgba(0,255,0,0.15) !important;
+    border-left-color: green !important;
   }
   .monster {
-    background-color: rgba(255,0,0,0.15) !important;
+    border-left-color: red !important;
   }
 </style>
