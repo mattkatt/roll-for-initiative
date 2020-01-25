@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import {eventBus} from "../main";
+  import {eventBus} from '../main';
   import uuid from 'uuid';
 
   export default {
@@ -57,6 +57,7 @@
           class: this.character ? 'character' : 'monster'
         });
 
+        eventBus.$emit('open-drawer', true);
         this.showOverlay = false;
       }
     }
