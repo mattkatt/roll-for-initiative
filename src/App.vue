@@ -4,7 +4,7 @@
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
-          :src="require('../public/logo-white.svg')"
+          :src="logo"
           class="my-3 mr-3"
           contain
           width="40"
@@ -18,7 +18,10 @@
         <v-icon>mdi-plus</v-icon>
       </v-btn>
 
-      <v-app-bar-nav-icon @click="openDrawer"/>
+      <v-app-bar-nav-icon
+        v-if="$vuetify.breakpoint.mdAndDown"
+        @click="openDrawer"
+      />
     </v-app-bar>
 
     <!-- Main Container -->
@@ -74,6 +77,7 @@
       window.addEventListener('beforeunload', this.saveState);
     },
     data: () => ({
+      logo: require('../public/logo-white.svg'),
       drawer: false,
       tracker: [],
       actors: []
