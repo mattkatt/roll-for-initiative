@@ -53,6 +53,7 @@
         this.$emit('add-actor', {
           id: uuid.v4(),
           name: this.name,
+          currentInitiative: 0,
           bonus: this.bonus,
           class: this.character ? 'character' : 'monster'
         });

@@ -17,7 +17,7 @@
         </v-list-item-content>
 
         <v-list-item-action>
-          <v-btn icon @click="destroyActor(id)">
+          <v-btn icon @click.stop="destroyActor(actor.id)">
             <v-icon color="secondary">mdi-close</v-icon>
           </v-btn>
         </v-list-item-action>
