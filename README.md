@@ -18,7 +18,7 @@ To create an easy-to-use mobile-based initiative tracker for DnD/d20 games - int
 - [x] Add and destroy actors with minimal settings (name, initiative bonus, npc/character)
 - [x] Move actors from tracker to a holding 'drawer'
 - [X] Save current state in `localStorage`
-- [ ] Roll initiative for NPCs and enemies on button click
+- [X] Roll initiative for NPCs and enemies on button click
 - [ ] Prompt for player initiative rolls
 - [ ] Order initiative list based on results
 - [ ] Allow for tie-breakers (possible for user to set tie-breaker rules before hand)

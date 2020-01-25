@@ -81,7 +81,8 @@
       logo: require('../public/logo-white.svg'),
       drawer: false,
       tracker: [],
-      actors: []
+      actors: [],
+      initiativeActive: false
     }),
     methods: {
       openAddActor() {
@@ -101,18 +102,31 @@
       moveToTracker(actor) {
         this.tracker = [... this.tracker, actor];
         this.destroyActor(actor.id);
+
+        if (this.initiativeActive) {
+          this.rollInitiativeForActor(actor)
+        }
       },
       rollForInitiative() {
-        //@todo - begin initiative
+        this.initiativeActive = true;
+        this.tracker.forEach(this.rollInitiativeForActor);
+      },
+      rollInitiativeForActor(actor) {
+        let roll =  Math.floor(Math.random() * 19) + 1;
+        actor.currentInitiative = parseInt(actor.bonus) + roll;
+        // for debug purposes @todo - remove
+        window.console.log(actor.name + ': ' + roll);
       },
       resetTracker() {
         let vm = this;
 
         this.tracker.forEach(actor => {
-            vm.actors = [...vm.actors, actor];
+          actor.currentInitiative = false;
+          vm.actors = [...vm.actors, actor];
         });
 
         this.tracker = [];
+        this.initiativeActive = false;
       },
       saveState() {
         let ls = localStorage;
