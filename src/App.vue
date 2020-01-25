@@ -26,7 +26,7 @@
 
     <!-- Main Container -->
     <v-content id="main" style="width:100%;max-width:960px" class="mx-auto">
-      <Tracker v-bind:tracker="tracker"/>
+      <Tracker :tracker="tracker"/>
       <AddActor @add-actor="addActor"/>
     </v-content>
 
@@ -116,6 +116,7 @@
         actor.currentInitiative = parseInt(actor.bonus) + roll;
         // for debug purposes @todo - remove
         window.console.log(actor.name + ': ' + roll);
+        eventBus.$emit('initiative-rolled');
       },
       resetTracker() {
         let vm = this;
