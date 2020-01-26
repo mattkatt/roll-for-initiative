@@ -104,13 +104,30 @@
         this.destroyActor(actor.id);
 
         if (this.initiativeActive) {
-          this.rollInitiativeForActor(actor);
+          if (actor.class === 'character') {
+            this.rollInitiativeForActor(actor);
+          }
+
+          if (actor.class === 'monster') {
+            this.rollInitiativeForActor(actor);
+          }
+
           this.sortTracker();
         }
       },
       rollForInitiative() {
         this.initiativeActive = true;
-        this.tracker.forEach(this.rollInitiativeForActor);
+
+        for (const actor of this.tracker) {
+          if (actor.class === 'character') {
+            this.rollInitiativeForActor(actor);
+          }
+
+          if (actor.class === 'monster') {
+            this.rollInitiativeForActor(actor);
+          }
+        }
+
         this.sortTracker();
       },
       rollInitiativeForActor(actor) {
