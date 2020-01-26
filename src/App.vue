@@ -151,17 +151,14 @@
         ls.setItem('initiativeActive', JSON.stringify(this.initiativeActive));
       },
       loadState() {
-        let ls = localStorage;
+        let ls = localStorage,
+            tracker = ls.getItem('tracker'),
+            actors = ls.getItem('actors'),
+            initiative = ls.getItem('initiativeActive');
 
-        if (ls.getItem('tracker')) {
-          this.tracker = JSON.parse(ls.getItem('tracker'));
-        }
-        if (ls.getItem('actors')) {
-          this.actors = JSON.parse(ls.getItem('actors'));
-        }
-        if (ls.getItem('initiativeActive')) {
-          this.initiativeActive = JSON.parse(ls.getItem('initiativeActive'));
-        }
+        this.tracker = tracker ? JSON.parse(tracker) : this.tracker;
+        this.actors = actors ? JSON.parse(actors) : this.actors;
+        this.initiativeActive = initiative ? JSON.parse(initiative) : this.initiativeActive;
       }
     }
   };
