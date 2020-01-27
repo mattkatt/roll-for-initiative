@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="showOverlay">
+  <v-dialog persistent v-model="showOverlay">
     <v-card>
       <v-card-title class="mb-4">Initiative Roll for {{ actor.name }}</v-card-title>
       <v-card-text>
