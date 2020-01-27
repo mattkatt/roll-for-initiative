@@ -90,7 +90,7 @@
         eventBus.$emit('open-add-actor', true);
       },
       openDrawer() {
-        eventBus.$emit('open-drawer', true);
+        eventBus.$emit('open-drawer', this.initiativeActive);
       },
       addActor(newActor) {
         this.actors = [...this.actors, newActor];

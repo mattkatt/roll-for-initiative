@@ -35,12 +35,14 @@
       actors: Array
     },
     data: () => ({
-      drawer: false
+      drawer: false,
+      initiativeActive: false,
     }),
     created() {
       let vm = this;
       eventBus.$on('open-drawer', value => {
-        vm.drawer = value;
+        vm.initiativeActive = value;
+        vm.drawer = true;
       });
     },
     mounted() {
@@ -54,6 +56,9 @@
       },
       moveToTracker(actor) {
         this.$emit('move-to-tracker', actor);
+        if (this.initiativeActive) {
+          this.drawer = false;
+        }
       },
     }
   }
