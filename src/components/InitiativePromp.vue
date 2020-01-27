@@ -24,9 +24,6 @@
 <script>
   export default {
     name: 'InitiativePrompt',
-    props: {
-      actor: Object
-    },
     created() {
       window.console.log('InitiativePrompt Created');
       for(let i=1; i <= 20; i++) {
@@ -54,10 +51,7 @@
         }
       },
       setInitiative() {
-        this.$emit('set-character-initiative', {
-          actorId: this.actor.id,
-          initiativeRoll: this.initiativeRoll
-        });
+        this.$emit('submit-initiative', this.initiativeRoll);
       }
     }
   }

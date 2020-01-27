@@ -82,7 +82,8 @@
       logo: require('../public/logo-white.svg'),
       tracker: [],
       actors: [],
-      initiativeActive: false
+      initiativeActive: false,
+      activeActor: null
     }),
     methods: {
       openAddActor() {
@@ -99,13 +100,14 @@
           return obj.id !== id;
         });
       },
-      moveToTracker(actor) {
+      async moveToTracker(actor) {
         this.tracker = [... this.tracker, actor];
         this.destroyActor(actor.id);
 
         if (this.initiativeActive) {
           if (actor.class === 'character') {
-            this.rollInitiativeForActor(actor);
+              let result = await this.rollInitiativeForCharacter(actor);
+              actor.currentInitiative = parseInt(result)
           }
 
           if (actor.class === 'monster') {
@@ -115,12 +117,13 @@
           this.sortTracker();
         }
       },
-      rollForInitiative() {
+      async rollForInitiative() {
         this.initiativeActive = true;
 
         for (const actor of this.tracker) {
           if (actor.class === 'character') {
-            this.rollInitiativeForActor(actor);
+            let result = await this.rollInitiativeForCharacter(actor);
+            actor.currentInitiative = parseInt(result)
           }
 
           if (actor.class === 'monster') {
@@ -133,6 +136,13 @@
       rollInitiativeForActor(actor) {
         let roll =  Math.floor(Math.random() * 19) + 1;
         actor.currentInitiative = parseInt(actor.bonus) + roll;
+      },
+      async rollInitiativeForCharacter(actor) {
+        this.activeActor = actor;
+
+        let result = await this.$root.getInitiative(actor);
+
+        return result + parseInt(actor.bonus);
       },
       sortTracker() {
         this.tracker.sort(this.compareInitiative);

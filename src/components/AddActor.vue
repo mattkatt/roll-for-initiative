@@ -38,7 +38,7 @@
     created() {
       let vm = this;
       eventBus.$on('open-add-actor', value => {
-          vm.showOverlay = value
+        vm.showOverlay = value
       });
     },
     data: () => ({
