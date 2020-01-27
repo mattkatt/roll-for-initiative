@@ -1,7 +1,7 @@
 # roll-for-initiative
 A simple initiative tracker for DnD - **WIP**
 
-Current Version - *alpha*
+Current Version - *beta*
 
 ## Mission
 To create an easy-to-use mobile-based initiative tracker for DnD/d20 games - intention is to create something "faster than paper". Potential in future to add additional features, but initial goal is to keep it simple.
@@ -10,7 +10,7 @@ To create an easy-to-use mobile-based initiative tracker for DnD/d20 games - int
 
 ### Initial features
 - Allow user to quickly create *actors* with stats and add them to the initiative tracker
-- Roll for Initiative: a single button that rolls the initative for all 'monster/npc' characters, and prompts for player's results, ordering the tracker based on those results (with tie-breakers/grouping similar results)
+- Roll for Initiative: a single button that rolls the initiative for all 'monster/npc' characters, and prompts for player's results, ordering the tracker based on those results (with tie-breakers/grouping similar results)
 - Ability to drag-and-drop in new *actors* into an active tracker and have their initiative included
 
 ### @todo
@@ -20,13 +20,13 @@ To create an easy-to-use mobile-based initiative tracker for DnD/d20 games - int
 - [X] Save current state in `localStorage`
 - [X] Roll initiative for actors on button click
 - [X] Order initiative list based on results
-- [ ] Prompt for player initiative rolls
+- [X] Prompt for player initiative rolls
 - [ ] Allow for tie-breakers (possible for user to set tie-breaker rules before hand)
 - [ ] github.io page
 - [ ] PWA for download to device
 
 ### Issues
-**Currently in *alpha* - please do not report issues as there will be many**
+**Currently in *beta* - please report any issues or suggestions**
 
 ---
 
