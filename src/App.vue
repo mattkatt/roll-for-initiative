@@ -33,6 +33,7 @@
     <v-fab-transition>
       <v-btn
         fab fixed bottom left dark color="primary"
+        class="btn--left"
         v-show="tracker.length"
         @click="resetTracker"
       >
@@ -226,9 +227,13 @@
 <style>
   #main {
     background-image: url('/logo.svg');
-    background-size: 50%;
+    background-size: 250px;
     background-position: center center;
     background-attachment: fixed;
+  }
+
+  .btn--left {
+    padding-left: 2px;
   }
 
   .btn--right {
