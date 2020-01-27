@@ -148,15 +148,36 @@
         this.tracker.sort(this.compareInitiative);
       },
       compareInitiative(actorA, actorB) {
-        let a = actorA.currentInitiative,
-            b = actorB.currentInitiative;
+        let a = actorA,
+            b = actorB;
 
-        if (a < b) {
+        // Compare currentInitiative
+        if (a.currentInitiative < b.currentInitiative) {
           return 1;
         }
-        if (a > b) {
+
+        if (a.currentInitiative > b.currentInitiative) {
           return -1;
         }
+
+        // In case of initiative tie, compare bonus
+        if (a.bonus < b.bonus) {
+          return 1;
+        }
+
+        if (a.bonus > b.bonus) {
+          return -1;
+        }
+
+        // In case of bonus tie, characters win
+        if (a.class !== b.class) {
+          if (b.class === 'Character') {
+            return 1;
+          }
+
+          return -1
+        }
+
         return 0;
       },
       resetTracker() {
