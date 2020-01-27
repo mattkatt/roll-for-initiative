@@ -4,13 +4,32 @@
     v-model="drawer"
   >
     <v-list rounded>
-      <v-subheader>Actors</v-subheader>
+      <v-subheader>Characters</v-subheader>
 
       <v-list-item
-          link
-          v-for="actor in actors"
-          :key="actor.id"
-          @click="moveToTracker(actor)"
+        link
+        v-for="actor in actorsCharacters"
+        :key="actor.id"
+        @click="moveToTracker(actor)"
+      >
+        <v-list-item-content>
+          <v-list-item-title v-text="actor.name"/>
+        </v-list-item-content>
+
+        <v-list-item-action>
+          <v-btn icon @click.stop="destroyActor(actor.id)">
+            <v-icon color="secondary">mdi-close</v-icon>
+          </v-btn>
+        </v-list-item-action>
+      </v-list-item>
+
+      <v-subheader>Monsters/NPCs</v-subheader>
+
+      <v-list-item
+        link
+        v-for="actor in actorsMonsters"
+        :key="actor.id"
+        @click="moveToTracker(actor)"
       >
         <v-list-item-content>
           <v-list-item-title v-text="actor.name"/>
@@ -33,6 +52,18 @@
     name: 'SideDrawer',
     props: {
       actors: Array
+    },
+    computed: {
+      actorsCharacters() {
+        return this.actors.filter(actor => {
+            return actor.class === 'character'
+        });
+      },
+      actorsMonsters() {
+        return this.actors.filter(actor => {
+            return actor.class === 'monster'
+        });
+      }
     },
     data: () => ({
       drawer: false,

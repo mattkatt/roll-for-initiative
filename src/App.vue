@@ -171,7 +171,7 @@
 
         // In case of bonus tie, characters win
         if (a.class !== b.class) {
-          if (b.class === 'Character') {
+          if (b.class === 'character') {
             return 1;
           }
 
