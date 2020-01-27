@@ -10,14 +10,14 @@
         link
         v-for="actor in actorsCharacters"
         :key="actor.id"
-        @click="moveToTracker(actor)"
+        @click.stop="moveToTracker(actor)"
       >
         <v-list-item-content>
           <v-list-item-title v-text="actor.name"/>
         </v-list-item-content>
 
         <v-list-item-action>
-          <v-btn icon @click.stop="destroyActor(actor.id)">
+          <v-btn icon outlined @click.stop="destroyActor(actor.id)">
             <v-icon color="secondary">mdi-close</v-icon>
           </v-btn>
         </v-list-item-action>
@@ -29,14 +29,14 @@
         link
         v-for="actor in actorsMonsters"
         :key="actor.id"
-        @click="moveToTracker(actor)"
+        @click.stop="moveToTracker(actor)"
       >
         <v-list-item-content>
           <v-list-item-title v-text="actor.name"/>
         </v-list-item-content>
 
         <v-list-item-action>
-          <v-btn icon @click.stop="destroyActor(actor.id)">
+          <v-btn icon outlined @click.stop="destroyActor(actor.id)">
             <v-icon color="secondary">mdi-close</v-icon>
           </v-btn>
         </v-list-item-action>
