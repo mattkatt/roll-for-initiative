@@ -11,6 +11,7 @@
         v-for="actor in actorsCharacters"
         :key="actor.id"
         @click.stop="moveToTracker(actor)"
+        class="actor character"
       >
         <v-list-item-content>
           <v-list-item-title v-text="actor.name"/>
@@ -30,6 +31,7 @@
         v-for="actor in actorsMonsters"
         :key="actor.id"
         @click.stop="moveToTracker(actor)"
+        class="actor monster"
       >
         <v-list-item-content>
           <v-list-item-title v-text="actor.name"/>
@@ -96,5 +98,28 @@
 </script>
 
 <style>
+  .v-navigation-drawer .actor {
+    padding: 0 8px 0 16px;
+    border: 1px solid #888
+  }
 
+  .v-navigation-drawer .actor.character {
+    border-color: rgba(0,128,0,0.25);
+  }
+
+  .v-navigation-drawer .actor.monster {
+    border-color: rgba(255,0,0,0.25);
+  }
+
+  .v-navigation-drawer .actor.character:hover {
+    background-color: rgba(0,128,0,0.05);
+  }
+
+  .v-navigation-drawer .actor.monster:hover {
+    background-color: rgba(255,0,0,0.05);
+  }
+
+  .v-navigation-drawer .actor .v-list-item__action {
+    margin: 0;
+  }
 </style>
