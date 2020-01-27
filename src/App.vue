@@ -36,7 +36,7 @@
         v-show="tracker.length"
         @click="resetTracker"
       >
-        <v-icon>mdi-refresh</v-icon>
+        <v-icon :size="32">mdi-reload</v-icon>
       </v-btn>
     </v-fab-transition>
 
@@ -47,7 +47,15 @@
         v-show="tracker.length"
         @click="rollForInitiative"
       >
-        <v-icon>mdi-dice-d20</v-icon>
+        <v-icon v-if="!rolling" :size="32">mdi-dice-d20</v-icon>
+        <v-progress-circular
+          v-else
+          :indeterminate="true"
+          :rotate="0"
+          :size="32"
+          :width="4"
+          color="white"
+        />
       </v-btn>
     </v-fab-transition>
 
@@ -83,6 +91,7 @@
       tracker: [],
       actors: [],
       initiativeActive: false,
+      rolling: false,
       activeActor: null
     }),
     methods: {
@@ -119,6 +128,7 @@
       },
       async rollForInitiative() {
         this.initiativeActive = true;
+        this.rolling = true;
 
         for (const actor of this.tracker) {
           if (actor.class === 'character') {
@@ -131,6 +141,7 @@
           }
         }
 
+        this.rolling = false;
         this.sortTracker();
       },
       rollInitiativeForActor(actor) {
