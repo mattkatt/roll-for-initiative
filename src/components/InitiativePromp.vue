@@ -25,9 +25,11 @@
   export default {
     name: 'InitiativePrompt',
     created() {
-      window.console.log('InitiativePrompt Created');
       for(let i=1; i <= 20; i++) {
-        this.possibleRolls = [... this.possibleRolls, {text:i,value:i}]
+        this.possibleRolls = [... this.possibleRolls, {
+          text:i,
+          value:i
+        }]
       }
     },
     data: () => ({
