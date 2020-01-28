@@ -235,7 +235,7 @@
 
 <style>
   #main {
-    background-image: url('/logo.svg');
+    background-image: url('/roll-for-initiative/logo.svg');
     background-size: 250px;
     background-position: center center;
     background-attachment: fixed;
