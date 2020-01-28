@@ -1,7 +1,7 @@
 # roll-for-initiative
-A simple initiative tracker for DnD - **WIP**
+A simple initiative tracker for DnD
 
-Current Version - *beta*
+Current Version - v1.0
 
 ## Mission
 To create an easy-to-use mobile-based initiative tracker for DnD/d20 games - intention is to create something "faster than paper". Potential in future to add additional features, but initial goal is to keep it simple.
