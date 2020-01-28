@@ -22,7 +22,7 @@ To create an easy-to-use mobile-based initiative tracker for DnD/d20 games - int
 - [X] Order initiative list based on results
 - [X] Prompt for player initiative rolls
 - [X] Allow for tie-breakers
-- [ ] github.io page
+- [X] github.io page
 - [ ] PWA for download to device
 
 ### Possible features
