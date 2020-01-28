@@ -15,13 +15,15 @@
       <v-spacer/>
 
       <v-btn icon @click="openAddActor">
-        <v-icon>mdi-plus</v-icon>
+        <v-icon>{{ icons.plus }}</v-icon>
       </v-btn>
 
       <v-app-bar-nav-icon
         v-if="$vuetify.breakpoint.mdAndDown"
         @click="openDrawer"
-      />
+      >
+        <v-icon>{{ icons.menu }}</v-icon>
+      </v-app-bar-nav-icon>
     </v-app-bar>
 
     <!-- Main Container -->
@@ -37,7 +39,7 @@
         v-show="tracker.length"
         @click="resetTracker"
       >
-        <v-icon :size="32">mdi-reload</v-icon>
+        <v-icon :size="32">{{ icons.reload }}</v-icon>
       </v-btn>
     </v-fab-transition>
 
@@ -48,7 +50,7 @@
         v-show="tracker.length"
         @click="rollForInitiative"
       >
-        <v-icon v-if="!rolling" :size="32">mdi-dice-d20</v-icon>
+        <v-icon v-if="!rolling" :size="32">{{ icons.d20 }}</v-icon>
         <v-progress-circular
           v-else
           :indeterminate="true"
@@ -70,10 +72,11 @@
 </template>
 
 <script>
-  import {eventBus} from './main'
+  import {eventBus} from './main';
+  import {mdiMenu, mdiPlus, mdiReload, mdiDiceD20} from '@mdi/js';
   import SideDrawer from './components/SideDrawer';
-  import Tracker from './components/Tracker'
-  import AddActor from './components/AddActor'
+  import Tracker from './components/Tracker';
+  import AddActor from './components/AddActor';
 
   export default {
     name: 'App',
@@ -93,7 +96,13 @@
       actors: [],
       initiativeActive: false,
       rolling: false,
-      activeActor: null
+      activeActor: null,
+      icons: {
+        menu: mdiMenu,
+        plus: mdiPlus,
+        reload: mdiReload,
+        d20: mdiDiceD20
+      }
     }),
     methods: {
       openAddActor() {

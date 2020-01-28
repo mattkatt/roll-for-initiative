@@ -19,7 +19,7 @@
 
         <v-list-item-action>
           <v-btn icon outlined @click.stop="destroyActor(actor.id)">
-            <v-icon color="secondary">mdi-close</v-icon>
+            <v-icon color="secondary">{{ closeIcon }}</v-icon>
           </v-btn>
         </v-list-item-action>
       </v-list-item>
@@ -39,7 +39,7 @@
 
         <v-list-item-action>
           <v-btn icon outlined @click.stop="destroyActor(actor.id)">
-            <v-icon color="secondary">mdi-close</v-icon>
+            <v-icon color="secondary">{{ closeIcon }}</v-icon>
           </v-btn>
         </v-list-item-action>
       </v-list-item>
@@ -49,6 +49,7 @@
 
 <script>
   import {eventBus} from '../main';
+  import {mdiClose} from '@mdi/js';
 
   export default {
     name: 'SideDrawer',
@@ -70,6 +71,7 @@
     data: () => ({
       drawer: false,
       initiativeActive: false,
+      closeIcon: mdiClose
     }),
     created() {
       let vm = this;

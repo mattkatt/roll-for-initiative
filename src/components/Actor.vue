@@ -9,7 +9,7 @@
         <v-icon
           v-if="actor.currentInitiative === false"
           color="primary" class="icon--spinning"
-        >mdi-loading</v-icon>
+        >{{ loadingIcon }}</v-icon>
         <span v-else>
           {{ actor.currentInitiative }}
         </span>
@@ -19,11 +19,16 @@
 </template>
 
 <script>
+  import {mdiLoading} from '@mdi/js';
+
   export default {
     name: 'Actor',
     props: [
       "actor"
-    ]
+    ],
+    data: () => ({
+      loadingIcon: mdiLoading
+    })
   }
 </script>
 
