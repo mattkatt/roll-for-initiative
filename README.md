@@ -33,6 +33,12 @@ To create an easy-to-use mobile-based initiative tracker for DnD/d20 games - int
 - [ ] Allow user to select tie-breaker rules
 - [ ] Allow users to change die rolled for initiative
 
+## Version History
+- **v1.0** - Initial release
+  - Allow users to add/destroy Player Characters and Monsters/NPCs
+  - Can add actors to the initiative tracker, instigate initiative and 
+- **v1.1** - Added ability to 
+
 ### Issues
 **Currently in *beta* - please report any issues or suggestions**
 
