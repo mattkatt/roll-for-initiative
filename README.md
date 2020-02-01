@@ -26,6 +26,9 @@ To create an easy-to-use mobile-based initiative tracker for DnD/d20 games - int
 - [X] github.io page
 - [ ] PWA for download to device
 
+### Added features
+- [X] Allow user to roll initiative for characters
+
 ### Possible features
 - [ ] Allow user to select tie-breaker rules
 - [ ] Allow users to change die rolled for initiative
