@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import InitiativePrompt from './components/InitiativePromp'
+import InitiativePrompt from './components/InitiativePrompt'
 import vuetify from './plugins/vuetify';
 
 export const eventBus = new Vue();
