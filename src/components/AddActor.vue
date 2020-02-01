@@ -11,6 +11,7 @@
             v-model="name"
             :rules="nameRules"
             label="Name"
+            ref="characterName"
             required
           />
           <v-text-field
@@ -44,6 +45,12 @@
       character: false,
       valid: false
     }),
+    mounted() {
+      let vm = this;
+      vm.$nextTick().then(() => {
+        vm.$refs.characterName.focus();
+      });
+    },
     watch: {
       showOverlay(value) {
         if (!value) {
