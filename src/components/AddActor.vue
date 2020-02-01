@@ -20,7 +20,7 @@
           />
           <v-switch
             v-model="character"
-            label="Character"
+            label="Player Character"
           />
           <v-btn rounded color="primary" @click="validate">Add</v-btn>
         </v-form>
@@ -30,19 +30,12 @@
 </template>
 
 <script>
-  import {eventBus} from '../main';
   import uuid from 'uuid';
 
   export default {
     name: 'AddActor',
-    created() {
-      let vm = this;
-      eventBus.$on('open-add-actor', value => {
-        vm.showOverlay = value
-      });
-    },
     data: () => ({
-      showOverlay: false,
+      showOverlay: true,
       name: '',
       nameRules: [
         v => !!v || 'Name is required'
@@ -51,6 +44,13 @@
       character: false,
       valid: false
     }),
+    watch: {
+      showOverlay(value) {
+        if (!value) {
+          this.$emit('add-actor', false);
+        }
+      }
+    },
     methods: {
       validate() {
         if (this.$refs.form.validate()) {
@@ -65,9 +65,6 @@
           bonus: this.bonus,
           class: this.character ? 'character' : 'monster'
         });
-
-        eventBus.$emit('open-drawer', true);
-        this.showOverlay = false;
       }
     }
   }

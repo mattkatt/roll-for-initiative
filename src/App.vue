@@ -14,7 +14,7 @@
 
       <v-spacer/>
 
-      <v-btn icon @click="openAddActor">
+      <v-btn icon @click="addActor">
         <v-icon>{{ icons.plus }}</v-icon>
       </v-btn>
 
@@ -29,7 +29,6 @@
     <!-- Main Container -->
     <v-content id="main" style="width:100%;max-width:960px" class="mx-auto">
       <Tracker :tracker="tracker"/>
-      <AddActor @add-actor="addActor"/>
     </v-content>
 
     <v-fab-transition>
@@ -76,14 +75,12 @@
   import {mdiMenu, mdiPlus, mdiReload, mdiDiceD20} from '@mdi/js';
   import SideDrawer from './components/SideDrawer';
   import Tracker from './components/Tracker';
-  import AddActor from './components/AddActor';
 
   export default {
     name: 'App',
     components: {
       SideDrawer,
       Tracker,
-      AddActor
     },
     mounted() {
       this.loadState();
@@ -105,13 +102,11 @@
       }
     }),
     methods: {
-      openAddActor() {
-        eventBus.$emit('open-add-actor', true);
-      },
       openDrawer() {
         eventBus.$emit('open-drawer', this.initiativeActive);
       },
-      addActor(newActor) {
+      async addActor() {
+        let newActor = await this.$root.addActor();
         this.actors = [...this.actors, newActor];
       },
       destroyActor(id) {
