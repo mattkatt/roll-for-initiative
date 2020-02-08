@@ -19,7 +19,7 @@
 
         <v-list-item-action>
           <v-btn icon outlined @click.stop="destroyActor(actor.id)">
-            <v-icon color="secondary">{{ closeIcon }}</v-icon>
+            <v-icon color="secondary">{{ icons.close }}</v-icon>
           </v-btn>
         </v-list-item-action>
       </v-list-item>
@@ -39,17 +39,27 @@
 
         <v-list-item-action>
           <v-btn icon outlined @click.stop="destroyActor(actor.id)">
-            <v-icon color="secondary">{{ closeIcon }}</v-icon>
+            <v-icon color="secondary">{{ icons.close }}</v-icon>
           </v-btn>
         </v-list-item-action>
       </v-list-item>
     </v-list>
+    <template v-slot:append>
+      <v-app-bar flat>
+        <v-spacer/>
+        <v-app-bar-nav-icon
+          @click="showSettings"
+        >
+          <v-icon>{{ icons.settings }}</v-icon>
+        </v-app-bar-nav-icon>
+      </v-app-bar>
+    </template>
   </v-navigation-drawer>
 </template>
 
 <script>
   import {eventBus} from '../main';
-  import {mdiClose} from '@mdi/js';
+  import {mdiClose, mdiSettings} from '@mdi/js';
 
   export default {
     name: 'SideDrawer',
@@ -71,7 +81,10 @@
     data: () => ({
       drawer: false,
       initiativeActive: false,
-      closeIcon: mdiClose
+      icons: {
+        close: mdiClose,
+        settings: mdiSettings
+      }
     }),
     created() {
       let vm = this;
@@ -95,6 +108,10 @@
           this.drawer = false;
         }
       },
+      showSettings() {
+        this.drawer = false;
+        eventBus.$emit('open-settings', true);
+      }
     }
   }
 </script>

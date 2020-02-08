@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="showOverlay"
+    v-model="showSettingsOverlay"
     max-width="500"
   >
     <v-card class="pa-2">
@@ -25,7 +25,7 @@
         <v-btn
           color="primary"
           class="ml-auto"
-          @click="showOverlay = false"
+          @click.stop="showSettingsOverlay = false"
         >Close</v-btn>
       </v-card-actions>
     </v-card>
@@ -33,14 +33,22 @@
 </template>
 
 <script>
+  import {eventBus} from "../main";
+
   export default {
     name: "SettingsPanel",
     props: {
       settings: Object
     },
     data: () => ({
-      showOverlay: true
+      showSettingsOverlay: false
     }),
+    created() {
+      let vm = this;
+      eventBus.$on('open-settings', () => {
+        vm.showSettingsOverlay = true;
+      });
+    }
   }
 </script>
 
