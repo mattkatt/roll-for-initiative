@@ -67,18 +67,25 @@
       @destroy-actor="destroyActor"
       @move-to-tracker="moveToTracker"
     />
+
+    <!-- Settings Panel -->
+    <SettingsPanel
+      :settings="settings"
+    />
   </v-app>
 </template>
 
 <script>
   import {eventBus} from './main';
   import {mdiMenu, mdiPlus, mdiReload, mdiDiceD20} from '@mdi/js';
+  import SettingsPanel from './components/SettingsPanel';
   import SideDrawer from './components/SideDrawer';
   import Tracker from './components/Tracker';
 
   export default {
     name: 'App',
     components: {
+      SettingsPanel,
       SideDrawer,
       Tracker,
     },
@@ -89,6 +96,9 @@
     },
     data: () => ({
       logo: require('../public/logo-white.svg'),
+      settings: {
+        darkMode: false
+      },
       tracker: [],
       actors: [],
       initiativeActive: false,
