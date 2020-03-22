@@ -58,7 +58,11 @@
         this.$store.commit('updateSetting', {
             setting: key,
             value: value
-        })
+        });
+
+        if(key ==='darkMode') {
+          eventBus.$emit('updateDarkMode');
+        }
       }
     }
   }

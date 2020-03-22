@@ -89,6 +89,10 @@
     },
     created() {
       this.loadState();
+      this.setDarkMode();
+
+      let vm = this;
+      eventBus.$on('updateDarkMode', vm.setDarkMode);
     },
     mounted() {
       window.addEventListener('beforeunload', this.saveState);
@@ -233,6 +237,9 @@
         this.actors = actors ? JSON.parse(actors) : this.actors;
         this.initiativeActive = initiative ? JSON.parse(initiative) : this.initiativeActive;
         this.$store.commit('loadSettings', JSON.parse(settings));
+      },
+      setDarkMode() {
+        this.$vuetify.theme.dark = this.$store.state.settings.darkMode
       }
     }
   };
