@@ -11,7 +11,9 @@
           :key="key"
         >
           <v-list-item-content>
-            <v-list-item-title v-text="key"/>
+            <v-list-item-title>
+              {{ key | stringToReadable }}
+            </v-list-item-title>
           </v-list-item-content>
 
           <v-list-item-action v-if="typeof value === 'boolean'">

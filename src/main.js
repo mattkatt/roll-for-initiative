@@ -18,6 +18,17 @@ const store = new Vuex.Store({
   }
 });
 
+Vue.filter('stringToReadable',function(string) {
+  if (!string) {
+    return ''
+  }
+
+  string = string.replace(/([a-z])([A-Z])/g, '$1 $2');
+  string = string.charAt(0).toUpperCase() + string.slice(1);
+
+  return string
+});
+
 new Vue({
   store,
   vuetify,
