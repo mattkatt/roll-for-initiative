@@ -18,7 +18,7 @@
 
           <v-list-item-action v-if="typeof value === 'boolean'">
             <v-switch
-              :model="settings[`${key}`]"
+              v-model="settings[`${key}`]"
               @change="updateSetting(key, !value)"
             />
           </v-list-item-action>
