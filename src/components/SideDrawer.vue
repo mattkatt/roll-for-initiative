@@ -141,4 +141,21 @@
   .v-navigation-drawer .actor .v-list-item__action {
     margin: 0;
   }
+
+  /* Dark Mode */
+  .v-navigation-drawer.theme--dark .actor.character {
+    border-color: rgba(0,128,0,0.75);
+  }
+
+  .v-navigation-drawer.theme--dark .actor.monster {
+    border-color: rgba(255,0,0,0.75);
+  }
+
+  .v-navigation-drawer.theme--dark .actor.character:hover {
+    background-color: rgba(0,128,0,0.2);
+  }
+
+  .v-navigation-drawer.theme--dark .actor.monster:hover {
+    background-color: rgba(255,0,0,0.2);
+  }
 </style>
