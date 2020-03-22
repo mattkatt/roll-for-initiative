@@ -19,7 +19,7 @@
 
         <v-list-item-action>
           <v-btn icon outlined @click.stop="destroyActor(actor.id)">
-            <v-icon color="secondary">{{ icons.close }}</v-icon>
+            <v-icon>{{ icons.close }}</v-icon>
           </v-btn>
         </v-list-item-action>
       </v-list-item>
@@ -39,7 +39,7 @@
 
         <v-list-item-action>
           <v-btn icon outlined @click.stop="destroyActor(actor.id)">
-            <v-icon color="secondary">{{ icons.close }}</v-icon>
+            <v-icon>{{ icons.close }}</v-icon>
           </v-btn>
         </v-list-item-action>
       </v-list-item>

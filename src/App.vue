@@ -33,7 +33,7 @@
 
     <v-fab-transition>
       <v-btn
-        fab fixed bottom left dark color="primary"
+        fab fixed bottom left color="primary"
         class="btn--left"
         v-show="tracker.length"
         @click="resetTracker"
@@ -44,7 +44,7 @@
 
     <v-fab-transition>
       <v-btn
-        fab fixed bottom right dark color="primary"
+        fab fixed bottom right color="primary"
         :class="{ 'btn--right' : $vuetify.breakpoint.lgAndUp }"
         v-show="tracker.length"
         @click="rollForInitiative"
@@ -112,6 +112,11 @@
         d20: mdiDiceD20
       }
     }),
+    computed: {
+        darkMode () {
+            return this.$store.state.settings.darkMode;
+        }
+    },
     methods: {
       openDrawer() {
         eventBus.$emit('open-drawer', this.initiativeActive);
@@ -239,7 +244,7 @@
         this.$store.commit('loadSettings', JSON.parse(settings));
       },
       setDarkMode() {
-        this.$vuetify.theme.dark = this.$store.state.settings.darkMode
+        this.$vuetify.theme.dark = this.darkMode
       }
     }
   };
