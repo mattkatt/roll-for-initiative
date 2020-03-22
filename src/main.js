@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import App from './App.vue'
 import AddActor from "./components/AddActor";
 import InitiativePrompt from './components/InitiativePrompt'
@@ -9,6 +10,7 @@ export const eventBus = new Vue();
 Vue.config.productionTip = false;
 
 new Vue({
+  Vuex,
   vuetify,
   render: h => h(App),
   methods: {
