@@ -25,6 +25,9 @@
         </v-list-item>
       </v-list>
       <v-card-actions>
+        <v-btn icon href="https://github.com/mattkatt/roll-for-initiative" target="_blank">
+          <v-icon>{{ icons.github }}</v-icon>
+        </v-btn>
         <v-btn
           color="primary"
           class="ml-auto"
@@ -37,12 +40,16 @@
 
 <script>
   import {eventBus} from "../main";
+  import {mdiGithubCircle} from '@mdi/js';
 
   export default {
     name: "SettingsPanel",
     data: () => ({
       showSettingsOverlay: false,
-      settings: null
+      settings: null,
+      icons: {
+          github: mdiGithubCircle
+      }
     }),
     created() {
       let vm = this;
