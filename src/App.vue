@@ -87,8 +87,10 @@
       SideDrawer,
       Tracker,
     },
-    mounted() {
+    created() {
       this.loadState();
+    },
+    mounted() {
       window.addEventListener('beforeunload', this.saveState);
       window.setInterval(this.saveState, 60000);
     },
@@ -218,16 +220,19 @@
         ls.setItem('tracker', JSON.stringify(this.tracker));
         ls.setItem('actors', JSON.stringify(this.actors));
         ls.setItem('initiativeActive', JSON.stringify(this.initiativeActive));
+        ls.setItem('settings', JSON.stringify(this.$store.state.settings));
       },
       loadState() {
         let ls = localStorage,
             tracker = ls.getItem('tracker'),
             actors = ls.getItem('actors'),
-            initiative = ls.getItem('initiativeActive');
+            initiative = ls.getItem('initiativeActive'),
+            settings = ls.getItem('settings');
 
         this.tracker = tracker ? JSON.parse(tracker) : this.tracker;
         this.actors = actors ? JSON.parse(actors) : this.actors;
         this.initiativeActive = initiative ? JSON.parse(initiative) : this.initiativeActive;
+        this.$store.commit('loadSettings', JSON.parse(settings));
       }
     }
   };

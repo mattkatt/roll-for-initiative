@@ -7,6 +7,9 @@ function setDefaults() {
 export const Settings = {
     state: () => setDefaults(),
     mutations: {
+        loadSettings(state, payload) {
+            state = Object.assign(state, payload)
+        },
         updateSetting(state, payload) {
             state[payload.setting] = payload.value;
         },
