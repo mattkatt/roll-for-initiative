@@ -1,16 +1,25 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { Settings } from './store/settings'
+import vuetify from './plugins/vuetify'
 import App from './App.vue'
-import AddActor from "./components/AddActor";
+import AddActor from "./components/AddActor"
 import InitiativePrompt from './components/InitiativePrompt'
-import vuetify from './plugins/vuetify';
 
 export const eventBus = new Vue();
 
 Vue.config.productionTip = false;
 
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+  modules: {
+    settings: Settings
+  }
+});
+
 new Vue({
-  Vuex,
+  store,
   vuetify,
   render: h => h(App),
   methods: {
