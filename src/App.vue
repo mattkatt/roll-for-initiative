@@ -69,9 +69,7 @@
     />
 
     <!-- Settings Panel -->
-    <SettingsPanel
-      :settings="settings"
-    />
+    <SettingsPanel/>
   </v-app>
 </template>
 
@@ -96,9 +94,6 @@
     },
     data: () => ({
       logo: require('../public/logo-white.svg'),
-      settings: {
-        darkMode: false
-      },
       tracker: [],
       actors: [],
       initiativeActive: false,
