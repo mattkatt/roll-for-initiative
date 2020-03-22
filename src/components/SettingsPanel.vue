@@ -7,16 +7,17 @@
       <v-card-title class="px-4 py-2">Settings</v-card-title>
       <v-list>
         <v-list-item
-          v-for="(setting, key) in settings"
+          v-for="(value, key) in settings"
           :key="key"
         >
           <v-list-item-content>
             <v-list-item-title v-text="key"/>
           </v-list-item-content>
 
-          <v-list-item-action>
+          <v-list-item-action v-if="typeof value === 'boolean'">
             <v-switch
-              :model="settings[setting]"
+              :model="settings[`${key}`]"
+              @change="updateSetting(key, !value)"
             />
           </v-list-item-action>
         </v-list-item>
@@ -37,17 +38,26 @@
 
   export default {
     name: "SettingsPanel",
-    props: {
-      settings: Object
-    },
     data: () => ({
-      showSettingsOverlay: false
+      showSettingsOverlay: false,
+      settings: null
     }),
     created() {
       let vm = this;
+
+      this.settings = this.$store.state.settings;
+
       eventBus.$on('open-settings', () => {
         vm.showSettingsOverlay = true;
       });
+    },
+    methods: {
+      updateSetting(key, value) {
+        this.$store.commit('updateSetting', {
+            setting: key,
+            value: value
+        })
+      }
     }
   }
 </script>
