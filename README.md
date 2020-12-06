@@ -42,6 +42,10 @@ To create an easy-to-use mobile-based initiative tracker for DnD/d20 games - int
 - **v1.1** 
   - Added ability to roll initiative for players
   - Set focus to 'name' input when adding new actors
+- **v1.1.1**
+  - Security Fix
+- **v1.1.2**
+  - Updated NPM packages
     
 
 ### Issues
