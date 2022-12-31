@@ -15,17 +15,17 @@
   },
   "devDependencies": {
     "@mdi/js": "^4.9.95",
-    "@vue/cli-plugin-babel": "^4.5.9",
-    "@vue/cli-plugin-eslint": "^4.5.9",
-    "@vue/cli-service": "^4.5.9",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
     "babel-eslint": "^10.1.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "sass": "^1.30.0",
-    "sass-loader": "^8.0.0",
-    "vue-cli-plugin-vuetify": "^2.0.8",
+    "sass-loader": "^13.2.0",
+    "vue-cli-plugin-vuetify": "^2.5.8",
     "vue-template-compiler": "^2.6.12",
-    "vuetify-loader": "^1.6.0"
+    "vuetify-loader": "^1.9.2"
   },
   "eslintConfig": {
     "root": true,
